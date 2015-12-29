@@ -1,0 +1,6 @@
+---- 176 Matches (1 in 1 files) ----
+Main.c (src):	cam->width = 176;
+---- 176 Search Errors Encountered (2) ----
+The following 2 files could not be processed:
+D:\linux src\app\camera_ok\camera_test\si\cam.IAB : File could not be opened.
+D:\linux src\app\camera_ok\camera_test\si\cam.IMB : File could not be opened.

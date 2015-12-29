@@ -1,0 +1,16 @@
+TOP_DIR := $(shell pwd)
+APP = $(TOP_DIR)/../bin/camera_h264encode
+
+CC = arm-linux-gcc
+CFLAGS = -g 
+LIBS = -lpthread -lx264 -lm 
+DEP_LIBS = -L$(TOP_DIR)/../lib
+HEADER =
+OBJS = main.o video_capture.o h264encoder.o rtp.o HardEncode.o SsbSipH264Encode.o SsbSipLogMsg.o Buffer.o
+
+all:  $(OBJS)
+	$(CC) -g -o $(APP) $(OBJS) $(LIBS) $(DEP_LIBS) 
+	cp $(APP) /home/biao/share -rf
+
+clean:
+	rm -f *.o a.out $(APP) core *~
