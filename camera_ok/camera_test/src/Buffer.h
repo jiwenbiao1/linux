@@ -1,7 +1,7 @@
 
 #ifndef _BUFFER_H
 #define _BUFFER_H
-#define YUV_FRAME_SIZE 320*240*3/2
+#define YUV_FRAME_SIZE 320*240*5
 typedef unsigned char uint8_t;
 
 typedef struct   {
