@@ -1,0 +1,121 @@
+
+led.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+50000000 <_start>:
+50000000:	e3a00207 	mov	r0, #1879048192	; 0x70000000
+50000004:	e3800013 	orr	r0, r0, #19	; 0x13
+50000008:	ee0f0f92 	mcr	15, 0, r0, cr15, cr2, {4}
+5000000c:	eb000006 	bl	5000002c <test>
+50000010:	e59ff018 	ldr	pc, [pc, #24]	; 50000030 <test+0x4>
+50000014:	e59f0018 	ldr	r0, [pc, #24]	; 50000034 <test+0x8>
+50000018:	e3a01000 	mov	r1, #0	; 0x0
+5000001c:	e5801000 	str	r1, [r0]
+50000020:	e3a0da02 	mov	sp, #8192	; 0x2000
+50000024:	eb000018 	bl	5000008c <main>
+
+50000028 <halt>:
+50000028:	eafffffe 	b	50000028 <halt>
+
+5000002c <test>:
+5000002c:	e1a0f00e 	mov	pc, lr
+50000030:	5000002c 	.word	0x5000002c
+50000034:	7e004000 	.word	0x7e004000
+50000038:	00001741 	.word	0x00001741
+5000003c:	61656100 	.word	0x61656100
+50000040:	01006962 	.word	0x01006962
+50000044:	0000000d 	.word	0x0000000d
+50000048:	00543405 	.word	0x00543405
+5000004c:	01080206 	.word	0x01080206
+
+50000050 <delay>:
+50000050:	e1a0c00d 	mov	ip, sp
+50000054:	e92dd800 	push	{fp, ip, lr, pc}
+50000058:	e24cb004 	sub	fp, ip, #4	; 0x4
+5000005c:	e24dd008 	sub	sp, sp, #8	; 0x8
+50000060:	e3a03801 	mov	r3, #65536	; 0x10000
+50000064:	e50b3010 	str	r3, [fp, #-16]
+50000068:	e51b3010 	ldr	r3, [fp, #-16]
+5000006c:	e2433001 	sub	r3, r3, #1	; 0x1
+50000070:	e50b3010 	str	r3, [fp, #-16]
+50000074:	e51b3010 	ldr	r3, [fp, #-16]
+50000078:	e3730001 	cmn	r3, #1	; 0x1
+5000007c:	1afffff9 	bne	50000068 <delay+0x18>
+50000080:	e24bd00c 	sub	sp, fp, #12	; 0xc
+50000084:	e89d6800 	ldm	sp, {fp, sp, lr}
+50000088:	e12fff1e 	bx	lr
+
+5000008c <main>:
+5000008c:	e1a0c00d 	mov	ip, sp
+50000090:	e92dd800 	push	{fp, ip, lr, pc}
+50000094:	e24cb004 	sub	fp, ip, #4	; 0x4
+50000098:	e24dd008 	sub	sp, sp, #8	; 0x8
+5000009c:	e3a0347f 	mov	r3, #2130706432	; 0x7f000000
+500000a0:	e2833b22 	add	r3, r3, #34816	; 0x8800
+500000a4:	e2833020 	add	r3, r3, #32	; 0x20
+500000a8:	e50b3014 	str	r3, [fp, #-20]
+500000ac:	e3a0347f 	mov	r3, #2130706432	; 0x7f000000
+500000b0:	e2833b22 	add	r3, r3, #34816	; 0x8800
+500000b4:	e2833024 	add	r3, r3, #36	; 0x24
+500000b8:	e50b3010 	str	r3, [fp, #-16]
+500000bc:	e51b2014 	ldr	r2, [fp, #-20]
+500000c0:	e3a03c11 	mov	r3, #4352	; 0x1100
+500000c4:	e2833011 	add	r3, r3, #17	; 0x11
+500000c8:	e5823000 	str	r3, [r2]
+500000cc:	e59f3044 	ldr	r3, [pc, #68]	; 50000118 <main+0x8c>
+                        /* r3=i'addr = [0x118] = 0x50000120 */
+
+500000d0:	e5933000 	ldr	r3, [r3]
+                        r3 = [0x50000120] = i
+
+500000d4:	e1a02003 	mov	r2, r3
+500000d8:	e51b3010 	ldr	r3, [fp, #-16]
+500000dc:	e5832000 	str	r2, [r3]
+500000e0:	e59f3030 	ldr	r3, [pc, #48]	; 50000118 <main+0x8c>
+500000e4:	e5933000 	ldr	r3, [r3]
+500000e8:	e2832001 	add	r2, r3, #1	; 0x1
+500000ec:	e59f3024 	ldr	r3, [pc, #36]	; 50000118 <main+0x8c>
+500000f0:	e5832000 	str	r2, [r3]
+500000f4:	e59f301c 	ldr	r3, [pc, #28]	; 50000118 <main+0x8c>
+500000f8:	e5933000 	ldr	r3, [r3]
+500000fc:	e3530010 	cmp	r3, #16	; 0x10
+50000100:	1a000002 	bne	50000110 <main+0x84>
+50000104:	e59f200c 	ldr	r2, [pc, #12]	; 50000118 <main+0x8c>
+50000108:	e3a03000 	mov	r3, #0	; 0x0
+5000010c:	e5823000 	str	r3, [r2]
+50000110:	ebffffce 	bl	50000050 <delay>
+50000114:	eaffffec 	b	500000cc <main+0x40>
+50000118:	50000120 	.word	0x50000120
+Disassembly of section .data:
+
+5000011c <j>:
+5000011c:	12345678 	.word	0x12345678
+Disassembly of section .bss:
+
+50000120 <i>:
+50000120:	00000000 	.word	0x00000000
+
+50000124 <k>:
+50000124:	00000000 	.word	0x00000000
+
+50000128 <g>:
+50000128:	00000000 	.word	0x00000000
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	movtmi	r4, #14080	; 0x3700
+   4:	4728203a 	undefined
+   8:	2029554e 	eorcs	r5, r9, lr, asr #10
+   c:	2e322e34 	mrccs	14, 1, r2, cr2, cr4, {1}
+  10:	Address 0x00000010 is out of bounds.
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001741 	andeq	r1, r0, r1, asr #14
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000d 	andeq	r0, r0, sp
+  10:	00543405 	subseq	r3, r4, r5, lsl #8
+  14:	01080206 	tsteq	r8, r6, lsl #4

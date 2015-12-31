@@ -1,0 +1,52 @@
+嵌入汇编
+
+__asm__(
+
+    "汇编指令"
+    "汇编指令"
+
+    : 输出寄存器
+    : 输入寄存器
+    : 影响到的寄存器    
+);
+
+例子:
+
+void mmu_init()
+{
+   int ret;
+   int i = 1;
+   
+   __asm__ {
+   
+     "mov %0, #0x100"   /* 第1个寄存器等于0x100，它会赋给变量ret */
+     "mov r1, #%1"      /* r1 = 第1个寄存器(它的值来自变量i) */
+     
+     : "=r"(ret),
+     : "r"(i)
+     : "r1"
+   };
+}
+
+
+
+P577 使能MMU
+
+P544 mcr
+P546 tlb ops
+
+
+MRC p15, 0, Rd, c2, c0, 0; read TTB register
+MCR p15, 0, Rd, c2, c0, 0; write TTB register
+
+MRC p15, 0, Rd, c3, c0, 0; read domain 15:0 access permissions
+MCR p15, 0, Rd, c3, c0, 0; write domain 15:0 access permissions
+
+To enable the MMU:
+1) Program the translation table base and domain access control registers.
+2) Program level 1 and level 2 page tables as required.
+3) Enable the MMU by setting bit 0 in the control register.
+
+MRC p15, 0, R1, c1, C0, 0: Read control rejection
+ORR R1, #0x1
+MCR p15,0,R1,C1, C0,0 ; Enable MMUS

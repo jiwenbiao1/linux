@@ -1,0 +1,50 @@
+
+led.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	e3a00207 	mov	r0, #1879048192	; 0x70000000
+   4:	e3800013 	orr	r0, r0, #19	; 0x13
+   8:	ee0f0f92 	mcr	15, 0, r0, cr15, cr2, {4}
+   c:	e59f0048 	ldr	r0, [pc, #72]	; 5c <halt+0x4>
+  10:	e3a01000 	mov	r1, #0	; 0x0
+  14:	e5801000 	str	r1, [r0]
+  18:	e59f1040 	ldr	r1, [pc, #64]	; 60 <halt+0x8>
+  1c:	e59f0040 	ldr	r0, [pc, #64]	; 64 <halt+0xc>
+  20:	e5810000 	str	r0, [r1]
+  24:	e59f103c 	ldr	r1, [pc, #60]	; 68 <halt+0x10>
+  28:	e3a00000 	mov	r0, #0	; 0x0
+
+0000002c <loop>:
+  2c:	e5810000 	str	r0, [r1]
+  30:	e2800001 	add	r0, r0, #1	; 0x1
+  34:	e3500010 	cmp	r0, #16	; 0x10
+  38:	03a00000 	moveq	r0, #0	; 0x0
+  3c:	eb000000 	bl	44 <delay>
+  40:	eafffff9 	b	2c <loop>
+
+00000044 <delay>:
+  44:	e3a02801 	mov	r2, #65536	; 0x10000
+
+00000048 <delay_loop>:
+  48:	e2422001 	sub	r2, r2, #1	; 0x1
+  4c:	e3520000 	cmp	r2, #0	; 0x0
+  50:	1afffffc 	bne	48 <delay_loop>
+  54:	e1a0f00e 	mov	pc, lr
+
+00000058 <halt>:
+  58:	eafffffe 	b	58 <halt>
+  5c:	7e004000 	.word	0x7e004000
+  60:	7f008820 	.word	0x7f008820
+  64:	00001111 	.word	0x00001111
+  68:	7f008824 	.word	0x7f008824
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001741 	andeq	r1, r0, r1, asr #14
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000d 	andeq	r0, r0, sp
+  10:	00543405 	subseq	r3, r4, r5, lsl #8
+  14:	01080206 	tsteq	r8, r6, lsl #4

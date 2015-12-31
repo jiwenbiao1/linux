@@ -1,0 +1,17 @@
+1. cp board/samsung/smdk6400 board/samsung/smdk6410 -rf
+2. 阅读Makefile,
+把smdk6400_config这个目标复制为smdk6410_config
+
+3. cp -rf nand_spl/board/samsung/smdk6400 nand_spl/board/samsung/smdk6410
+
+4. 分析 ./mkconfig smdk6410 arm arm1176 smdk6410 samsung s3c64xx
+
+5. 复制配置文件
+cp include/configs/smdk6400.h include/configs/smdk6410.h
+
+试编译：
+a. 配置: make smdk6410_config
+b. 在编译过程中出错时修改代码
+c. 看最后的链接命令:
+
+arm-linux-ld  -pie -T u-boot.lds -Bstatic -Ttext 0x57e00000 $UNDEF_SYM arch/arm/cpu/arm1176/start.o --start-group api/libapi.o arch/arm/cpu/arm1176/libarm1176.o arch/arm/cpu/arm1176/s3c64xx/libs3c64xx.o arch/arm/lib/libarm.o common/libcommon.o disk/libdisk.o drivers/bios_emulator/libatibiosemu.o drivers/block/libblock.o drivers/dma/libdma.o drivers/fpga/libfpga.o drivers/gpio/libgpio.o drivers/hwmon/libhwmon.o drivers/i2c/libi2c.o drivers/input/libinput.o drivers/misc/libmisc.o drivers/mmc/libmmc.o drivers/mtd/libmtd.o drivers/mtd/nand/libnand.o drivers/mtd/onenand/libonenand.o drivers/mtd/spi/libspi_flash.o drivers/mtd/ubi/libubi.o drivers/net/libnet.o drivers/net/phy/libphy.o drivers/pci/libpci.o drivers/pcmcia/libpcmcia.o drivers/power/libpower.o drivers/rtc/librtc.o drivers/serial/libserial.o drivers/spi/libspi.o drivers/twserial/libtws.o drivers/usb/eth/libusb_eth.a drivers/usb/gadget/libusb_gadget.o drivers/usb/host/libusb_host.o drivers/usb/musb/libusb_musb.o drivers/usb/phy/libusb_phy.o drivers/video/libvideo.o drivers/watchdog/libwatchdog.o fs/cramfs/libcramfs.o fs/ext2/libext2fs.o fs/fat/libfat.o fs/fdos/libfdos.o fs/jffs2/libjffs2.o fs/reiserfs/libreiserfs.o fs/ubifs/libubifs.o fs/yaffs2/libyaffs2.o lib/libfdt/libfdt.o lib/libgeneric.o lib/lzma/liblzma.o lib/lzo/liblzo.o lib/zlib/libz.o net/libnet.o post/libpost.o board/samsung/smdk6410/libsmdk6410.o --end-group /share/wei/u-boot-2011.06-rc2/arch/arm/lib/eabi_compat.o -L /usr/local/arm/4.2.2-eabi/usr/bin-ccache/../lib/gcc/arm-unknown-linux-gnueabi/4.2.2 -lgcc -Map u-boot.map -o u-boot

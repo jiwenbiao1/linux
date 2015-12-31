@@ -1,0 +1,6 @@
+---- do_uart_irq Matches (2 in 2 files) ----
+Irq.c:	do_uart_irq();
+Uart.c:void do_uart_irq(void)
+---- uart_irq Matches (2 in 1 files) ----
+Irq.c:void uart_irq(void)
+Irq.c:	VIC1VECTADDR5 = uart_irq;

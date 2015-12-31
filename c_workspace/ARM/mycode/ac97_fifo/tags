@@ -1,0 +1,112 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+AC_CODEC_CMD	main.c	6;"	d	file:
+AC_CODEC_STAT	main.c	7;"	d	file:
+AC_GLBCTRL	main.c	4;"	d	file:
+AC_GLBSTAT	main.c	5;"	d	file:
+AC_PCMADDR	main.c	8;"	d	file:
+AC_PCMDATA	main.c	9;"	d	file:
+CC	Makefile	/^CC=arm-linux-gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-c -I .\/include$/;"	m
+DABT_STACK_LEN	include/config.h	15;"	d
+DABT_STACK_START	include/config.h	14;"	d
+EXE	Makefile	/^EXE = start$/;"	m
+EXE_LD_ADDR	include/config.h	3;"	d
+GPACON	print.c	16;"	d	file:
+GPDCON	main.c	11;"	d	file:
+GPECON	main.c	12;"	d	file:
+GPMCON	start.S	/^#define GPMCON	0x7f008820$/;"	d
+GPMDAT	start.S	/^#define GPMDAT	0x7f008824$/;"	d
+INT_AC97	main.c	31;"	d	file:
+IRQ_STACK_LEN	include/config.h	6;"	d
+IRQ_STACK_START	include/config.h	5;"	d
+LD	Makefile	/^LD=arm-linux-ld$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS=-T main.lds$/;"	m
+LIBCA	Makefile	/^LIBCA = \/usr\/local\/arm\/4.2.2-eabi\/usr\/lib\/libc.a$/;"	m
+MUSIC_ADDR	main.c	17;"	d	file:
+OBJCOPY	Makefile	/^OBJCOPY=arm-linux-objcopy$/;"	m
+OBJDUMP	Makefile	/^OBJDUMP=arm-linux-objdump$/;"	m
+OBJS	Makefile	/^OBJS=start.o main.o print.o irq.o common.o$/;"	m
+PABT_STACK_LEN	include/config.h	12;"	d
+PABT_STACK_START	include/config.h	11;"	d
+PFUNC	irq.c	/^typedef int ( * PFUNC )( void );$/;"	t	file:
+SP_START	include/config.h	17;"	d
+SWI_STACK_LEN	include/config.h	9;"	d
+SWI_STACK_START	include/config.h	8;"	d
+UBRDIV0	print.c	10;"	d	file:
+UCON0	print.c	5;"	d	file:
+UDIVSLOT0	print.c	11;"	d	file:
+UFCON0	print.c	6;"	d	file:
+ULCON0	print.c	4;"	d	file:
+UMCON0	print.c	7;"	d	file:
+URXH0	print.c	14;"	d	file:
+UTRSTAT0	print.c	8;"	d	file:
+UTXH0	print.c	13;"	d	file:
+VIC0ADDRESS	irq.c	7;"	d	file:
+VIC0INTENABLE	irq.c	9;"	d	file:
+VIC1ADDRESS	irq.c	8;"	d	file:
+VIC1INTENABLE	irq.c	10;"	d	file:
+VIC1INTENABLE	main.c	13;"	d	file:
+VIC1IRQSTATUS	main.c	15;"	d	file:
+VIC1SOFTINT	main.c	14;"	d	file:
+WTCON	start.S	/^#define WTCON	0x7e004000$/;"	d
+__COMMON_H	include/common.h	2;"	d
+_bss_end	start.S	/^_bss_end:$/;"	l
+_bss_start	start.S	/^_bss_start:$/;"	l
+_dabt	start.S	/^_dabt:$/;"	l
+_fiq	start.S	/^_fiq:$/;"	l
+_irq	start.S	/^_irq:$/;"	l
+_prefetch	start.S	/^_prefetch:$/;"	l
+_reserved	start.S	/^_reserved:$/;"	l
+_soft_int	start.S	/^_soft_int:$/;"	l
+_start	start.S	/^_start:$/;"	l
+_undefined	start.S	/^_undefined:$/;"	l
+ac97_init	main.c	/^void ac97_init(void)$/;"	f
+clear_bss	start.S	/^clear_bss:$/;"	l
+dabt	start.S	/^dabt:$/;"	l
+delay	common.c	/^int delay( int seconds )$/;"	f
+die_loop	start.S	/^die_loop:$/;"	l
+do_ac97_int	main.c	/^int do_ac97_int( void )$/;"	f
+do_irq	irq.c	/^int do_irq( void )$/;"	f
+enable_irq	main.c	/^int enable_irq( void )$/;"	f
+fiq	start.S	/^fiq:$/;"	l
+get_bit	include/common.h	16;"	d
+get_val	include/common.h	18;"	d
+install_int_handler	irq.c	/^int install_int_handler( int num, PFUNC p )$/;"	f
+irq	start.S	/^irq:$/;"	l
+main	main.c	/^int main( void )$/;"	f
+mgetc	print.c	/^u8 mgetc( void )$/;"	f
+mgetline	print.c	/^void mgetline( char buf[] )$/;"	f
+mprintf	print.c	/^void mprintf( char * str, ... )$/;"	f
+mputc	print.c	/^int mputc( u8 ch )$/;"	f
+mputs	print.c	/^void mputs( char * str )$/;"	f
+mputstr	print.c	/^void mputstr( char * str )$/;"	f
+or_val	include/common.h	21;"	d
+prefetch	start.S	/^prefetch:$/;"	l
+puth_str	print.c	/^void puth_str( u8 buf[], int len )$/;"	f
+read_cmd	main.c	/^unsigned short read_cmd(unsigned char addr)$/;"	f
+read_ready	main.c	/^volatile unsigned int read_ready = 0;$/;"	v
+read_val	include/common.h	19;"	d
+reserved	start.S	/^reserved:$/;"	l
+reset	start.S	/^reset:$/;"	l
+set_2bit	include/common.h	11;"	d
+set_bit	include/common.h	9;"	d
+set_nbit	include/common.h	13;"	d
+set_one	include/common.h	7;"	d
+set_val	include/common.h	20;"	d
+set_zero	include/common.h	6;"	d
+soft_int	start.S	/^soft_int:$/;"	l
+times	main.c	/^unsigned int times = 0;$/;"	v
+u16	include/common.h	/^typedef unsigned short u16;$/;"	t
+u32	include/common.h	/^typedef unsigned int u32;$/;"	t
+u8	include/common.h	/^typedef unsigned char u8;$/;"	t
+udelay	main.c	/^void udelay(int num)$/;"	f
+undefined	start.S	/^undefined:$/;"	l
+val_to_char	print.c	/^u8 val_to_char( int val )$/;"	f
+vi	include/common.h	4;"	d
+wm9714_init	main.c	/^void wm9714_init(void)$/;"	f
+write_cmd	main.c	/^void write_cmd(unsigned char addr, unsigned short data)$/;"	f

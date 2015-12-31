@@ -1,0 +1,73 @@
+
+.globl _start
+_start:
+
+	/* 0 地址 */
+	b reset                 /* 复位时,cpu跳到0地址 */
+	b undefined_instruction  /* cpu遇到不能识别的指令时 */
+	b vector_swi             /* 当执行swi指令时, 进入swi模 式 */
+	@ldr	pc, _prefetch_abort /* 预取中止异常 */
+	@ldr	pc, _data_abort     /* 数据访问异常 */
+	@ldr	pc, _not_used       /* 没用到 */
+	@ldr	pc, _irq            /* 中断异常 */
+	@ldr	pc, _fiq            /* 快中断异常 */
+	
+vector_swi:
+	ldr sp, =8*1024
+	mrs r0, cpsr
+	ldr r1, =swi_str
+	bl main
+
+swi_str:
+	.word 0x00697773  /* swi */
+	
+undefined_instruction:
+	ldr sp, =8*1024
+	mrs r0, cpsr
+	ldr r1, =und_str
+	bl main
+
+und_str:
+	.word 0x00646e75  /* und */
+
+usr_str:
+	.word 0x00727375  /* usr */
+
+reset:
+/* 硬件相关的设置 */
+    /* Peri port setup */
+    ldr r0, =0x70000000
+    orr r0, r0, #0x13
+    mcr p15,0,r0,c15,c2,4       @ 256M(0x70000000-0x7fffffff)
+    
+/* 关看门狗 */
+/* 往WTCON(0x7E004000)写0 */
+	
+	ldr r0, =0x7E004000
+	mov r1, #0
+	str r1, [r0]
+	
+	/* 设置栈 */
+	ldr sp, =8*1024
+
+	/* 设置时钟 */
+	bl clock_init
+
+	mrs r0, cpsr
+	bic	r0,r0,#0x1f
+	orr	r0,r0,#0x10
+	@msr	cpsr,r0      /* 进入user mode */
+
+	ldr sp, =8*1024
+
+	ldr r1, =usr_str
+	bl main_usr
+	
+	swi 0
+undef:
+	.word 0xff000000
+
+halt:
+	b halt	
+
+

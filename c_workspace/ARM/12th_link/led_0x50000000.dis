@@ -1,0 +1,115 @@
+
+led.elf:     file format elf32-littlearm
+
+Disassembly of section .text:
+
+50000000 <_start>:
+50000000:	e3a00207 	mov	r0, #1879048192	; 0x70000000
+50000004:	e3800013 	orr	r0, r0, #19	; 0x13
+50000008:	ee0f0f92 	mcr	15, 0, r0, cr15, cr2, {4}
+5000000c:	e59f0010 	ldr	r0, [pc, #16]	; 50000024 <halt+0x4>
+50000010:	e3a01000 	mov	r1, #0	; 0x0
+50000014:	e5801000 	str	r1, [r0]
+50000018:	e3a0da02 	mov	sp, #8192	; 0x2000
+5000001c:	eb000016 	bl	5000007c <main>
+
+50000020 <halt>:
+50000020:	eafffffe 	b	50000020 <halt>
+50000024:	7e004000 	.word	0x7e004000
+50000028:	00001741 	.word	0x00001741
+5000002c:	61656100 	.word	0x61656100
+50000030:	01006962 	.word	0x01006962
+50000034:	0000000d 	.word	0x0000000d
+50000038:	00543405 	.word	0x00543405
+5000003c:	01080206 	.word	0x01080206
+
+50000040 <delay>:
+50000040:	e1a0c00d 	mov	ip, sp
+50000044:	e92dd800 	push	{fp, ip, lr, pc}
+50000048:	e24cb004 	sub	fp, ip, #4	; 0x4
+5000004c:	e24dd008 	sub	sp, sp, #8	; 0x8
+50000050:	e3a03801 	mov	r3, #65536	; 0x10000
+50000054:	e50b3010 	str	r3, [fp, #-16]
+50000058:	e51b3010 	ldr	r3, [fp, #-16]
+5000005c:	e2433001 	sub	r3, r3, #1	; 0x1
+50000060:	e50b3010 	str	r3, [fp, #-16]
+50000064:	e51b3010 	ldr	r3, [fp, #-16]
+50000068:	e3730001 	cmn	r3, #1	; 0x1
+5000006c:	1afffff9 	bne	50000058 <delay+0x18>
+50000070:	e24bd00c 	sub	sp, fp, #12	; 0xc
+50000074:	e89d6800 	ldm	sp, {fp, sp, lr}
+50000078:	e12fff1e 	bx	lr
+
+5000007c <main>:
+5000007c:	e1a0c00d 	mov	ip, sp
+50000080:	e92dd800 	push	{fp, ip, lr, pc}
+50000084:	e24cb004 	sub	fp, ip, #4	; 0x4
+50000088:	e24dd008 	sub	sp, sp, #8	; 0x8
+5000008c:	e3a0347f 	mov	r3, #2130706432	; 0x7f000000
+50000090:	e2833b22 	add	r3, r3, #34816	; 0x8800
+50000094:	e2833020 	add	r3, r3, #32	; 0x20
+50000098:	e50b3014 	str	r3, [fp, #-20]
+5000009c:	e3a0347f 	mov	r3, #2130706432	; 0x7f000000
+500000a0:	e2833b22 	add	r3, r3, #34816	; 0x8800
+500000a4:	e2833024 	add	r3, r3, #36	; 0x24
+500000a8:	e50b3010 	str	r3, [fp, #-16]
+500000ac:	e51b2014 	ldr	r2, [fp, #-20]
+500000b0:	e3a03c11 	mov	r3, #4352	; 0x1100
+500000b4:	e2833011 	add	r3, r3, #17	; 0x11
+500000b8:	e5823000 	str	r3, [r2]
+500000bc:	e59f3044 	ldr	r3, [pc, #68]	; 50000108 <main+0x8c>
+                        /* r3 = [0x108] = 0x5000010c *
+
+500000c0:	e5933000 	ldr	r3, [r3]
+                        /* r3 = [0x5000010c] = */
+
+500000c4:	e1a02003 	mov	r2, r3
+500000c8:	e51b3010 	ldr	r3, [fp, #-16]
+500000cc:	e5832000 	str	r2, [r3]
+500000d0:	e59f3030 	ldr	r3, [pc, #48]	; 50000108 <main+0x8c>
+500000d4:	e5933000 	ldr	r3, [r3]
+500000d8:	e2832001 	add	r2, r3, #1	; 0x1
+500000dc:	e59f3024 	ldr	r3, [pc, #36]	; 50000108 <main+0x8c>
+500000e0:	e5832000 	str	r2, [r3]
+500000e4:	e59f301c 	ldr	r3, [pc, #28]	; 50000108 <main+0x8c>
+500000e8:	e5933000 	ldr	r3, [r3]
+500000ec:	e3530010 	cmp	r3, #16	; 0x10
+500000f0:	1a000002 	bne	50000100 <main+0x84>
+500000f4:	e59f200c 	ldr	r2, [pc, #12]	; 50000108 <main+0x8c>
+500000f8:	e3a03000 	mov	r3, #0	; 0x0
+500000fc:	e5823000 	str	r3, [r2]
+50000100:	ebffffce 	bl	50000040 <delay>
+50000104:	eaffffec 	b	500000bc <main+0x40>
+50000108:	5000010c 	.word	0x5000010c
+Disassembly of section .data:
+
+5000010c <i>:
+5000010c:	0000000f 	.word	0x0000000f
+
+50000110 <j>:
+50000110:	12345678 	.word	0x12345678
+Disassembly of section .bss:
+
+50000114 <k>:
+50000114:	00000000 	.word	0x00000000
+
+50000118 <g>:
+50000118:	00000000 	.word	0x00000000
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	43434700 	movtmi	r4, #14080	; 0x3700
+   4:	4728203a 	undefined
+   8:	2029554e 	eorcs	r5, r9, lr, asr #10
+   c:	2e322e34 	mrccs	14, 1, r2, cr2, cr4, {1}
+  10:	Address 0x00000010 is out of bounds.
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001741 	andeq	r1, r0, r1, asr #14
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000d 	andeq	r0, r0, sp
+  10:	00543405 	subseq	r3, r4, r5, lsl #8
+  14:	01080206 	tsteq	r8, r6, lsl #4
