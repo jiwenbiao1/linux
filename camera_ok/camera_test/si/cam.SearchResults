@@ -1,7 +1,7 @@
----- 192.168.169 Matches (2 in 2 files) ----
-H264.h (src):#define DEST_IP				"192.168.169.100"
-Rtpreceive.h (src):#define SERVER_IP "192.168.169.102"
----- 192.168.169 Search Errors Encountered (2) ----
+---- SERVER_PORT Matches (2 in 2 files) ----
+Rtpreceive.c (src):	addr.sin_port = htons(SERVER_PORT);
+Rtpreceive.h (src):#define SERVER_PORT  1234
+---- SERVER_PORT Search Errors Encountered (2) ----
 The following 2 files could not be processed:
 D:\linux src\app\camera_ok\camera_test\si\cam.IAB : File could not be opened.
 D:\linux src\app\camera_ok\camera_test\si\cam.IMB : File could not be opened.

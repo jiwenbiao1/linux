@@ -10,7 +10,7 @@
 
 #define PACKET_BUFFER_END	(unsigned int)0x00000000
 #define MAX_RTP_PKT_LENGTH	1400
-#define DEST_IP				"192.168.169.101"
+#define DEST_IP				"192.168.1.101"
 #define DEST_PORT			1234
 #define H264				96
 

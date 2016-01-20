@@ -2,7 +2,7 @@ TOP_DIR := $(shell pwd)
 APP = $(TOP_DIR)/../bin/camera_h264encode
 SERVER = $(TOP_DIR)/../bin/rtprecv
 
-CC = arm-linux-gcc
+CC = arm-linux-gcc 
 CFLAGS = -g 
 LIBS = -lpthread -lx264 -lm 
 DEP_LIBS = -L$(TOP_DIR)/../lib
